@@ -1,0 +1,48 @@
+# This directive allows results to be deferred during execution
+directive @defer on FIELD
+
+# Query root
+type Query {
+  foods: [Food]
+  food(id: Long): Food
+}
+
+#
+input FoodInput {
+  # A food's price
+  price: Int
+
+  # A food's company
+  company: String
+
+  # A food's id
+  id: Long
+
+  # A food's name
+  name: String
+}
+
+# Unrepresentable type
+scalar UNREPRESENTABLE
+
+# Long type
+scalar Long
+
+# Mutation root
+type Mutation {
+  updateFood(food: FoodInput): Food
+  countPrice: Long!
+  saveFood(food: FoodInput): Food
+  deleteFood(id: Long): Boolean!
+}
+
+#
+type Food {
+  company: String
+  id: Long
+  isGood: Boolean!
+  isTasty: Boolean!
+  name: String
+  price: Int,
+  amount: Int
+}
